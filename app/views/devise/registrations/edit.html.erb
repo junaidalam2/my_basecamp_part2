@@ -3,9 +3,8 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="row mb-3">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "Email", :class => "form-control w-25" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -13,31 +12,39 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% character_min = "Password" %>
+    <%= f.password_field :password, autocomplete: "new-password", :placeholder => character_min, :class => "form-control w-25" %>
+    <p><span class="badge bg-secondary">(leave blank if you don't want to change your password)</span></p>
     <% if @minimum_password_length %>
       <br />
       <em><%= @minimum_password_length %> characters minimum</em>
     <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="row mb-3">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", :placeholder => "Password confirmation", :class => "form-control w-25" %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+   <div class="row mb-3">
+    <%= f.password_field :current_password, autocomplete: "current-password", :placeholder => "Current password", :class => "form-control w-25"  %>
+    <p><span class="badge bg-secondary">(we need your current password to confirm your changes)</span></p>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+
+ <div class="row mb-3">
+    <div>
+      <%= f.submit "Update", :class => 'btn btn-info text-white' %>
+    </div>
   </div>
 <% end %>
 
 <h3>Cancel my account</h3>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+<div>
+  <%= button_to "Cancel my account", @user, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, :class => 'btn btn-danger' %>
+</div>
 
-<%= link_to "Back", :back %>
+<br>
+<br>
+
+<%= button_tag "<< Back", type: :button, class: 'btn btn-primary', onclick: 'window.history.back()' %>
