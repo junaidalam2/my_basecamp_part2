@@ -11,27 +11,38 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="row mb-3">
+      <div>
+        <%= form.text_field :name, class: "form-control w-50", placeholder: "Project name", disabled: @disable_status_field %>
+      </div>
+    </div>
+
+  <div class="row mb-3">
+    <div>
+      <%= form.text_area :description, class: "form-control w-50", placeholder: "Description", disabled: @disable_status_field %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
+  <div class="row mb-3">
+    <div>
+      <%= form.label :time_frame_for_completion, style: "display: inline" %> 
+      &nbsp;
+      <%= form.date_field :time_frame_for_completion, min: Date.today, class: "form-control text-end w-25", style: "display: inline", disabled: @disable_status_field %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :time_frame_for_completion, style: "display: block" %>
-    <%= form.date_field :time_frame_for_completion %>
+  <div class="row mb-3">
+      <div>
+        <%= form.label :status, style: "display: inline" %> 
+          &nbsp;
+        <%= form.select :status, [:Active, :Completed, :Inactive], {} , { class: "form-select w-25", style: "display: inline", disabled: @disable_status_field }%>
+      </div>
   </div>
 
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
+  <div class="row mb-3">
+    <div>
+      <%= form.submit @submit_button_text, class: "btn btn-info text-white", disabled: @disabled_status %>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

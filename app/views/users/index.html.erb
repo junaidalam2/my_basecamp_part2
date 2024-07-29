@@ -2,7 +2,7 @@
 
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
-    <tr>
+    <tr class="text-center">
       <th>First Name</th>
       <th>Last Name</th>
       <th>Position</th>
@@ -17,7 +17,7 @@
       <% @users.each do |user| %>
         <tr>
             <%= render user %>
-          <td>
+          <td class="text-center">
             <%= button_to "Show user", user, :method => "get", class: 'btn btn-outline-secondary btn-sm'  %>
           </td>
         </tr>  

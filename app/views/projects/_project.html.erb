@@ -1,22 +1,31 @@
 <div id="<%= dom_id project %>">
-  <p>
-    <strong>Name:</strong>
-    <%= project.name %>
-  </p>
 
-  <p>
-    <strong>Description:</strong>
-    <%= project.description %>
-  </p>
-
-  <p>
-    <strong>Time frame for completion:</strong>
-    <%= project.time_frame_for_completion %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= project.status %>
-  </p>
+    <td>
+      <%= project.name %>
+    </td>
+    <td>
+      <%= project.description %>
+    </td>
+    <td>
+      <%= project.time_frame_for_completion %>
+    </td>
+    <td>
+      <%= project.created_at %>
+    </td>
+    <td class="text-center">
+      <% if project.status == "Active" %>
+        <span class="badge rounded-pill text-bg-info text-white">
+          <%= project.status %>
+        </span>
+      <% elsif project.status == "Inactive" %>
+        <span class="badge rounded-pill text-bg-danger">
+          <%= project.status %>
+        </span>
+      <% else %>
+        <span class="badge rounded-pill text-bg-secondary">
+          <%= project.status %>
+        </span>
+      <% end %>
+    </td>
 
 </div>
