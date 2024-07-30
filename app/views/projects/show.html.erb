@@ -28,6 +28,38 @@
   <tbody>
 </table>
 
+    
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  Project Team
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <ul>
+                <% if @project.users.empty? %>
+                  <li>No users assigned to this project.</li>
+                <% else %>
+                  <% @project.users.each do | user | %>
+                    <li><%= user.first_name %> <%= user.last_name %></li>
+                  <% end %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
 <div class="row mb-3">
   <%= button_to "<< Back to projects", projects_path, :method => "get" , class: 'btn btn-primary' %>
 </div>
