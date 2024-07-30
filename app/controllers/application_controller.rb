@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-
-
     before_action :configure_permitted_parameters, if: :devise_controller?
     protected
 
@@ -9,6 +7,11 @@ class ApplicationController < ActionController::Base
     end
 
     def after_sign_in_path_for(resource)
+
+        if @user.profile == 'admin'
+            session[:is_admin] = true
+        end
+
         root_path 
     end
 
