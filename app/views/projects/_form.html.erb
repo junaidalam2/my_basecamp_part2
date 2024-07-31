@@ -42,10 +42,10 @@
   <p>
     <%= form.label :Team %><br />
     <% for user in User.all %>
-      <%= check_box_tag "project[user_ids][]", user.id, @project.users.include?(user) %>
-      
-      <%= label_tag "user_#{user.id}", "#{user.first_name} #{user.last_name}", class: 'checkbox-label' %>
-      <br>
+      <div class="form-check">
+        <%= check_box_tag "project[user_ids][]", user.id, @project.users.include?(user) , class: 'form-check-input' %>
+        <%= label_tag "user_#{user.id}", "#{user.first_name} #{user.last_name}", class: 'checkbox-label' %>
+      </div>
     <% end %>
   </p>
 
