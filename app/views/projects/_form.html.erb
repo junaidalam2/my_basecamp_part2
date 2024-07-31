@@ -39,8 +39,9 @@
       </div>
   </div>
 
+  <br>
   <p>
-    <%= form.label :Team %><br />
+    <%= form.label :Team, "Team:" %>
     <% for user in User.all %>
       <div class="form-check">
         <%= check_box_tag "project[user_ids][]", user.id, @project.users.include?(user) , class: 'form-check-input' %>
