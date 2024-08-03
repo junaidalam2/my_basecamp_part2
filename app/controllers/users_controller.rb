@@ -45,6 +45,8 @@ class UsersController < ApplicationController
 
         if @user.profile == 'admin'
           session[:is_admin] = true
+        else 
+          session[:is_admin] = false
         end
 
       else
