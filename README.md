@@ -2,7 +2,7 @@
 
 
 ## Task
-The applicated is a Ruby on Rails project management application.
+A Ruby on Rails project management application.
 
 
 ## Prerequisites
