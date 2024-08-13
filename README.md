@@ -9,7 +9,7 @@ A Ruby on Rails project management application.
 * Ruby 3.1.2
 * Rails 7.1.3.4
 * Node.js and npm
-* PostgreSQL
+* SQLite
 
 
 ## Installation
