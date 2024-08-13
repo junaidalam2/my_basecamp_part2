@@ -25,12 +25,11 @@ bundle install
 npm install
 ```
 
-3. **Set up database**: Create a PostgreSQL database named my_basecamp (or your preferred name). Update config/database.yml with your database credentials.
+3. **Set up database**: SQLite is a default local database with Ruby on Rails. You may want to change to another base (e.g. PostgreSQL).  
 
 ## Database creation
 
 ```
-rails db:create
 rails db:migrate
 ```
 
