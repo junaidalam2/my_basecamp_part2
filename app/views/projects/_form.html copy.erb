@@ -47,9 +47,10 @@
         <%= check_box_tag "project[user_ids][]", user.id, @project.users.include?(user) , class: 'form-check-input' %>
         <%= label_tag "user_#{user.id}", "#{user.first_name} #{user.last_name}", class: 'checkbox-label' %>
 
-        <%= fields_for :roles, @project.user.id.role_type do |roles_form| %>
-          <%= roles_form.select :role_type, ["team_lead", "team_member"], {}, { class: "form-select w-25", style: "display: inline" } %>
-        <% end %>
+        <select name="project[role_type][<%= user.id %>]">
+          <option value="team_lead">Team Lead</option>
+          <option value="team_member">Team Member</option>
+        </select>
       </div>
     <% end %>
   </p>
