@@ -16,10 +16,12 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    @role = ['Team Member', 'Team Leader']
   end
 
   # GET /projects/1/edit
   def edit
+    @role = ['Team Member', 'Team Leader']
   end
 
   # POST /projects or /projects.json

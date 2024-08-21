@@ -28,3 +28,15 @@
   .text-center {
     text-align: center;
   }
+
+  .form-left-margin-project-toggle-button {
+    margin-left: 20px;
+  }
+
+  .spacer-column {
+    width: 2rem;
+  }
+
+  .column-header-text-color {
+    color: rgb(67, 51, 133);
+  }
