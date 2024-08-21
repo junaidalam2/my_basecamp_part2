@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :project_teams, dependent: :destroy
   has_many :projects, through: :project_teams
-  validates :first_name, :last_name, :position, :department, :profile, :email, presence: true
+  validates_uniqueness_of :email
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
+  validates :first_name, :last_name, :position, :department, :profile, presence: true
 
 end
