@@ -40,51 +40,32 @@
   </div>
 
 
-<table>
-  <tr class="column-header-text-color">
-    <th><%= form.label :Team, "Team:" %></th>
-    <th class="spacer-column"></th>
-    <th><%= label_tag :team_lead_id, "Team Lead:", class: 'form-check-label' %></th>
-  </tr>
-  <% if @project.persisted? %>
-    <%= fields_for @project.project_teams do |project_team_form| %>
-      <tr>
-          <td>
-            <div class="form-check">
-              <%= project_team_form.hidden_field :user_id, value: project_team_form.object.user_id %>  
-              <%= project_team_form.check_box :_destroy, class: 'form-check-input' %>  
-              <%= project_team_form.label :user, "#{project_team_form.object.user.first_name} #{project_team_form.object.user.last_name}", class: 'checkbox-label' %>
-            </div>
-          </td>
-          <td class="spacer-column"></td>
-          <td>
-            <div class="form-check form-switch form-left-margin-project-toggle-button">
-              <%= project_team_form.check_box :team_lead, class: 'form-check-input' %>  </div>
-          </td>
-      </tr>
-    <% end %>
-  <% else %>
+
+  <table>
+    <tr class="column-header-text-color">
+      <th><%= form.label :Team, "Team:" %></th>
+      <th class="spacer-column"></th>
+      <th><%= label_tag :team_lead_id, "Team Lead:", class: 'form-check-label' %></th>
+    </tr>
+    
     <% for user in User.all %>
       <tr>
+        <div class="form-check">
           <td>
-            <div class="form-check">
-              <%= check_box_tag "project[project_teams_attributes][][user_id]", user.id, false, class: 'form-check-input' %>
-              <%= label_tag "user_#{user.id}", "#{user.first_name} #{user.last_name}", class: 'checkbox-label' %>
-            </div>
+            <%= check_box_tag "project[user_ids][]", user.id, @project.users.include?(user) , class: 'form-check-input' %>
+            <%= label_tag "user_#{user.id}", "#{user.first_name} #{user.last_name}", class: 'checkbox-label' %>
           </td>
-          <td class="spacer-column"></td>
+          <td class="spacer-column">
+          </td>
           <td>
             <div class="form-check form-switch form-left-margin-project-toggle-button">
-              <%= check_box_tag "project[project_teams_attributes][][team_lead]", true, false, class: 'form-check-input' %>
+              <%= form.check_box :team_lead_id, class: 'form-check-input' %>
             </div>
           </td>
+        </div>
       </tr>
     <% end %>
-  <% end %>
-</table>
-
-
-  
+  </table>
 
   <br>
   <div class="row mb-3">

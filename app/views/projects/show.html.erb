@@ -46,7 +46,8 @@
                   <li>No users assigned to this project.</li>
                 <% else %>
                   <% @project.users.each do | user | %>
-                    <li><%= user.first_name %> <%= user.last_name %></li>
+                  <% project_team = user.project_teams.find_by(project_id: @project.id) %>
+                    <li><%= user.first_name %> <%= user.last_name %>  <b><%= project_team.team_lead ? "(Team Lead)" : "" %></b></li>
                   <% end %>
                 <% end %>
               </ul>
