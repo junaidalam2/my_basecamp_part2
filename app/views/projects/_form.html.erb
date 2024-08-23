@@ -39,34 +39,30 @@
       </div>
   </div>
 
-
-<table>
-  <tr class="column-header-text-color">
-    <th><%= form.label :Team, "Team:" %></th>
-    <th class="spacer-column"></th>
-    <th><%= label_tag :team_lead_id, "Team Lead:", class: 'form-check-label' %></th>
-  </tr>
-  <% for user in User.all %>
-    <tr>
-      <td>
-        <div class="form-check">
-          <% project_team = @project.project_teams.find_by(user_id: user.id) %>
-          <%= check_box_tag "project[project_teams_attributes][][user_id]", user.id, project_team.present?, class: 'form-check-input' %>
-          <%= label_tag "user_#{user.id}", "#{user.first_name} #{user.last_name}", class: 'checkbox-label' %>
-        </div>
-      </td>
-      <td class="spacer-column"></td>
-      <td>
-        <div class="form-check form-switch form-left-margin-project-toggle-button">
-          <%= check_box_tag "project[project_teams_attributes][][team_lead]", true, project_team&.team_lead, class: 'form-check-input' %>
-        </div>
-      </td>
+  <table>
+    <tr class="column-header-text-color">
+      <th><%= form.label :Team, "Team:" %></th>
+      <th class="spacer-column"></th>
+      <th><%= label_tag :team_lead_id, "Team Lead:", class: 'form-check-label' %></th>
     </tr>
-  <% end %>
-</table>
-
-
-  
+    <% for user in User.all %>
+      <tr>
+        <td>
+          <div class="form-check">
+            <% project_team = @project.project_teams.find_by(user_id: user.id) %>
+            <%= check_box_tag "project[project_teams_attributes][][user_id]", user.id, project_team.present?, class: 'form-check-input' %>
+            <%= label_tag "user_#{user.id}", "#{user.first_name} #{user.last_name}", class: 'checkbox-label' %>
+          </div>
+        </td>
+        <td class="spacer-column"></td>
+        <td>
+          <div class="form-check form-switch form-left-margin-project-toggle-button">
+            <%= check_box_tag "project[project_teams_attributes][][team_lead]", true, project_team&.team_lead, class: 'form-check-input' %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 
   <br>
   <div class="row mb-3">

@@ -39,13 +39,16 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1 or /projects/1.json
   def update
-    @project.project_teams.destroy_all
+    @project_team_data = @project.project_teams 
     
     respond_to do |format|
       if @project.update(project_params)
+        @project.project_teams.destroy_all
+        @project.update(project_params)
         format.html { redirect_to project_url(@project), notice: "Project was successfully updated." }
         format.json { render :show, status: :ok, location: @project }
       else
+        @project.project_teams = @project_team_data
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
