@@ -11,8 +11,8 @@
 
 =begin
 
-user = User.create! :first_name => 'FakeFirstName1', :last_name => 'FakelastName1', :email => 'fakeaccount1@gmail.com', :password => 'password1', :password_confirmation => 'password1', :department => 'Fake Deparment', :profile => 'user', :position => 'Fake Position'
 user = User.create! :first_name => 'Junaid', :last_name => 'Alam', :email => 'junaid.alam2@gmail.com', :password => 'password1', :password_confirmation => 'password1', :department => 'Fake Deparment', :profile => 'admin', :position => "World's Best Boss"
+user = User.create! :first_name => 'FakeFirstName1', :last_name => 'FakelastName1', :email => 'fakeaccount1@gmail.com', :password => 'password1', :password_confirmation => 'password1', :department => 'Fake Deparment', :profile => 'user', :position => 'Fake Position'
 user = User.create! :first_name => 'FakeFirstName2', :last_name => 'FakelastName2', :email => 'fakeaccount2@gmail.com', :password => 'password1', :password_confirmation => 'password1', :department => 'Fake Deparment', :profile => 'user', :position => 'Fake Position'
 user = User.create! :first_name => 'FakeFirstName3', :last_name => 'FakelastName3', :email => 'fakeaccount3@gmail.com', :password => 'password1', :password_confirmation => 'password1', :department => 'Fake Deparment', :profile => 'user', :position => 'Fake Position'
 user = User.create! :first_name => 'FakeFirstName4', :last_name => 'FakelastName4', :email => 'fakeaccount4@gmail.com', :password => 'password1', :password_confirmation => 'password1', :department => 'Fake Deparment', :profile => 'user', :position => 'Fake Position'
