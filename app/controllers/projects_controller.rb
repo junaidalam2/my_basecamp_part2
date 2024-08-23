@@ -16,12 +16,10 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
-    @role = ['Team Member', 'Team Leader']
   end
 
   # GET /projects/1/edit
   def edit
-    @role = ['Team Member', 'Team Leader']
   end
 
   # POST /projects or /projects.json
@@ -41,6 +39,8 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1 or /projects/1.json
   def update
+    @project.project_teams.destroy_all
+    
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to project_url(@project), notice: "Project was successfully updated." }
