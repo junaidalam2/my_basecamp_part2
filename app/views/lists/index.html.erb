@@ -1,14 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Lists</h1>
+<h1>Tasks</h1>
 
 <div id="lists">
+
+<% if @lists.empty? %>
+  <%= 'No tasks for this project'%>
+<% else %>
   <% @lists.each do |list| %>
-    <%= render list %>
+  <%= render list %>
+<% end %>
     <p>
-      <%= link_to "Show this list", list %>
+      <%#= link_to "Show this list", list %>
+      <%= link_to "Show this list", list %> (associated with project: <%= list.project_team.try(:project).try(:name) %>)
     </p>
   <% end %>
 </div>
 
-<%= link_to "New list", new_list_path %>
+<%= link_to "New Task", new_list_path %>

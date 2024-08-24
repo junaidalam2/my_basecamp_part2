@@ -3,9 +3,9 @@ class ListsController < ApplicationController
 
   # GET /lists or /lists.json
   def index
-    if param[:project_id]
-        @project = Project.find(param[:project_id])
-        @lists = Project.lists
+    if params[:project_id]
+        @project = Project.find(params[:project_id])
+        @lists = @project.lists
         @lists_title = "Tasks for #{@project.name}"
     elsif params[:user_id]
         @lists = User.find(params[:user_id]).lists
@@ -14,11 +14,14 @@ class ListsController < ApplicationController
         @lists = List.all
         @lists_title = 'All Tasks'
     end
+
+    # debugger
+
   end
 
   # GET /lists/1 or /lists/1.json
   def show
-    @showed_user = List.find(params[:id])
+    @showed_list = List.find(params[:id])
   end
 
   # GET /lists/new

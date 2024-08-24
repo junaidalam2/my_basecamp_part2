@@ -63,12 +63,10 @@
 <br>
 
 <div class="d-flex justify-content-start gap-3">
-  <%= button_to "Manage Tasks", projects_path, :method => "get" , class: 'btn btn-info text-white btn-sm' %>
+  <%= link_to "Manage Tasks", lists_path(project_id: @project.id), class: 'btn btn-info text-white btn-sm' %>
   <%= button_to "Manage Message Board", projects_path, :method => "get" , class: 'btn btn-info text-white btn-sm' %>
   <%= button_to "Manage Attachments", projects_path, :method => "get" , class: 'btn btn-info text-white btn-sm' %>
 </div>
-
-  <li><%= link_to "My Projects", lis_path(user_id: current_user.id), class:"dropdown-item" %> </li>
 
 
 <br>

@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
   resources :projects
   resources :users
+
+  resources :projects do
+    resources :lists
+  end
+  
   
   root 'home#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -4,7 +4,7 @@ class CreateLists < ActiveRecord::Migration[7.1]
       t.string :title
       t.string :description
       t.string :status
-      t.references :project_teams, null: false, foreign_key: true
+      t.references :project_team, null: false, foreign_key: true
       t.timestamps
     end
   end
