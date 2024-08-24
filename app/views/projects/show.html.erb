@@ -68,6 +68,9 @@
   <%= button_to "Manage Attachments", projects_path, :method => "get" , class: 'btn btn-info text-white btn-sm' %>
 </div>
 
+  <li><%= link_to "My Projects", lis_path(user_id: current_user.id), class:"dropdown-item" %> </li>
+
+
 <br>
 
 <div class="row mb-3">

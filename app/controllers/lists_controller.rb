@@ -3,11 +3,22 @@ class ListsController < ApplicationController
 
   # GET /lists or /lists.json
   def index
-    @lists = List.all
+    if param[:project_id]
+        @project = Project.find(param[:project_id])
+        @lists = Project.lists
+        @lists_title = "Tasks for #{@project.name}"
+    elsif params[:user_id]
+        @lists = User.find(params[:user_id]).lists
+        @lists_title = 'My Tasks'
+    else
+        @lists = List.all
+        @lists_title = 'All Tasks'
+    end
   end
 
   # GET /lists/1 or /lists/1.json
   def show
+    @showed_user = List.find(params[:id])
   end
 
   # GET /lists/new
@@ -17,6 +28,13 @@ class ListsController < ApplicationController
 
   # GET /lists/1/edit
   def edit
+    @list = List.new(list_params)
+    
+    if @list.save
+      redirect_to @list, notice: 'List was successfully created.'
+    else
+      render :new
+    end
   end
 
   # POST /lists or /lists.json
@@ -36,6 +54,8 @@ class ListsController < ApplicationController
 
   # PATCH/PUT /lists/1 or /lists/1.json
   def update
+    @list = List.find(params[:id])
+
     respond_to do |format|
       if @list.update(list_params)
         format.html { redirect_to list_url(@list), notice: "List was successfully updated." }
@@ -49,6 +69,7 @@ class ListsController < ApplicationController
 
   # DELETE /lists/1 or /lists/1.json
   def destroy
+    @list = List.find(params[:id])
     @list.destroy!
 
     respond_to do |format|
@@ -65,6 +86,6 @@ class ListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def list_params
-      params.fetch(:list, {})
+      params.require(:list).permit(:title, :description, :status, :project_id)
     end
 end
