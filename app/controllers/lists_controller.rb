@@ -26,7 +26,12 @@ class ListsController < ApplicationController
 
   # GET /lists/new
   def new
+    if params[:project_id].present?
+      @project = Project.find(params[:project_id])
+    end
     @list = List.new
+
+    #debugger
   end
 
   # GET /lists/1/edit

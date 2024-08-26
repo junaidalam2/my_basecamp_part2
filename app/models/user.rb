@@ -8,5 +8,6 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   validates :first_name, :last_name, :position, :department, :profile, presence: true
-
+  has_many :assigned_lists, through: :project_teams, source: :lists
+  has_many :team_members, through: :project_teams, source: :project
 end

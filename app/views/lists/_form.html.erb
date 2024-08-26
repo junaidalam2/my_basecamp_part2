@@ -11,7 +11,29 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.submit %>
-  </div>
+    <tr>
+      <td>
+        <%= form.text_field :title, class: "form-control w-100", placeholder: "Task Name", disabled: @disable_status_field %>
+      </td>
+      <td>
+        <%= form.text_field :description, class: "form-control w-100", placeholder: "Description", disabled: @disable_status_field %>
+      </td>
+      <td>
+        <%= form.select :status, [:"In Progress", :Completed, :Retracted], {} , { class: "form-select w-100", style: "display: inline", disabled: @disable_status_field }%>
+      </td>
+      <td>
+         <% if @project.present? %>
+          <%= form.select :assignee_id, @project.project_teams.team_members.map { |user| [user.name, user.id] }, include_blank: true, class: "form-select w-100" %>
+          <% else %>
+            <p>Please select a project first.</p>
+          <% end %>    
+      </td>
+      <td>
+        <%#= form.submit %>
+         <%= button_to "Create Task", "", type: "submit", class: "btn btn-outline-primary btn-sm" %>
+      </td>
+    </tr>
+
 <% end %>
+
+ 

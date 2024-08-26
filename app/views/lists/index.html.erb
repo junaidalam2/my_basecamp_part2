@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Tasks</h1>
+<h1><%= @lists_title%></h1>
 
 <div id="lists">
 
@@ -17,4 +17,4 @@
   <% end %>
 </div>
 
-<%= link_to "New Task", new_list_path %>
+<%= link_to "New Task", new_project_list_path(@project), class: 'btn btn-primary' %>
