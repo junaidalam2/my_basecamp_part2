@@ -22,15 +22,19 @@
         <%= form.select :status, [:"In Progress", :Completed, :Retracted], {} , { class: "form-select w-100", style: "display: inline", disabled: @disable_status_field }%>
       </td>
       <td>
-         <% if @project.present? %>
-          <%= form.select :assignee_id, @project.project_teams.team_members.map { |user| [user.name, user.id] }, include_blank: true, class: "form-select w-100" %>
-          <% else %>
-            <p>Please select a project first.</p>
-          <% end %>    
+      <% if @project.present? %>
+        <%= form.select :assignee_id, options_for_select(@user_ids.map { |user_id| 
+          user = User.find(user_id)
+          user.present? ? "#{user.first_name} #{user.last_name}" : nil
+        }), include_blank: true, class: "form-select w-100" %>
+      <% else %>
+        <p>Please select a project first.</p>
+      <% end %>
       </td>
+        <%= form.hidden_field :project_team_id, value: @project_team_id %>
       <td>
-        <%#= form.submit %>
-         <%= button_to "Create Task", "", type: "submit", class: "btn btn-outline-primary btn-sm" %>
+        <%= form.submit %>
+         <%#= button_to "Create Task", "", type: "submit", class: "btn btn-outline-primary btn-sm" %>
       </td>
     </tr>
 

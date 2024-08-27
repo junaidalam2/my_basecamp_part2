@@ -26,8 +26,10 @@ class ListsController < ApplicationController
 
   # GET /lists/new
   def new
-    if params[:project_id].present?
+    if params[:project_id]
       @project = Project.find(params[:project_id])
+      @project_team_id = params[:project_id]
+      @user_ids = @project.project_teams.map { |project_team| project_team.user&.id }
     end
     @list = List.new
 
@@ -36,7 +38,7 @@ class ListsController < ApplicationController
 
   # GET /lists/1/edit
   def edit
-    @list = List.new(list_params)
+    @list = List.find(params[:id])
     
     if @list.save
       redirect_to @list, notice: 'List was successfully created.'
@@ -94,6 +96,6 @@ class ListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def list_params
-      params.require(:list).permit(:title, :description, :status, :project_id)
+      params.require(:list).permit(:title, :description, :status, :assignee_id, :project_team_id)
     end
 end
