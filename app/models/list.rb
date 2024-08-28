@@ -4,6 +4,6 @@ class List < ApplicationRecord
     validates :title, presence: true
     validates :description, presence: true
     validates :status, presence: true
-    validates :project_teams_id, presence: true
+    validates :project_team_id, presence: true
 
 end
