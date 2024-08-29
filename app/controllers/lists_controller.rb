@@ -51,6 +51,10 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
 
+    if params[:project_id]
+      @project = Project.find(params[:project_id])
+    end
+
     respond_to do |format|
       if @list.save
         format.html { redirect_to list_url(@list), notice: "List was successfully created." }
