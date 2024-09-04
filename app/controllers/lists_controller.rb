@@ -26,8 +26,13 @@ class ListsController < ApplicationController
 
   # GET /lists/new
   def new
+
+    
+    
     if params[:project_id]
       @project = Project.find(params[:project_id])
+      # puts '*************', params[:project_id], @project
+      #debugger
       @project_team_id = params[:project_id]
       @user_ids = @project.project_teams.map { |project_team| project_team.user&.id }
     end
@@ -50,10 +55,14 @@ class ListsController < ApplicationController
   # POST /lists or /lists.json
   def create
     @list = List.new(list_params)
-
+    
+    
+    params[:project_id] = @list.project_team_id
     if params[:project_id]
       @project = Project.find(params[:project_id])
+      @user_ids = @project.project_teams.map { |project_team| project_team.user&.id }
     end
+    
 
     respond_to do |format|
       if @list.save
